@@ -142,7 +142,7 @@
         }, 3000); // 3 ثواني وتختفي
         }
     
-        axios.get("https://prof-academy.vercel.app/api/teachersapi/teachers")
+        axios.get("https://prof-academy-api.vercel.app/api/teachers")
         .then(res => {
             if (!res.data.success) {
             showToast(res.data.errMsg); // ✅ الرسالة الخطأ بتظهر كتوسْت
