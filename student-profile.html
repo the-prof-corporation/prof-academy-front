@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الملف الشخصي - Prof Academy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0B60B0;
+            --secondary: #40A2D8;
+            --accent: #F0EDCF;
+            --background: #F0EDCF;
+            --background-light: #FFFFFF;
+            --text-primary: #2C3E50;
+            --text-secondary: #5A6C7D;
+            --text-muted: #8B9DC3;
+            --border: #E1E8ED;
+            --shadow: rgba(11, 96, 176, 0.1);
+            --shadow-hover: rgba(11, 96, 176, 0.15);
+            --gradient-sky: linear-gradient(135deg, #40A2D8 0%, #0B60B0 100%);
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--background);
+            color: var(--text-primary);
+            line-height: 1.6;
+            direction: rtl;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: var(--background-light);
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 2px 20px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .nav-logo i {
+            font-size: 2rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .nav-link.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: var(--background-light);
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-content {
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: var(--gradient-sky);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 2rem 0;
+        }
+
+        .profile-grid {
+            display: grid;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Profile Summary */
+        .profile-summary {
+            background: var(--background-light);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 20px var(--shadow);
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-summary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: var(--gradient-sky);
+            border-radius: 50%;
+            transform: translate(50px, -50px);
+            opacity: 0.05;
+        }
+
+        .profile-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: var(--gradient-sky);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            margin: 0 auto 1.5rem;
+            border: 4px solid var(--background-light);
+            box-shadow: 0 8px 30px var(--shadow);
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-avatar:hover {
+            transform: scale(1.05);
+        }
+
+        .avatar-edit {
+            position: absolute;
+            bottom: 5px;
+            left: 5px;
+            width: 35px;
+            height: 35px;
+            background: var(--success);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .avatar-edit:hover {
+            background: #16a34a;
+            transform: scale(1.1);
+        }
+
+        .profile-name {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-grade {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .profile-contacts {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .contact-item i {
+            color: var(--primary);
+        }
+
+        .edit-profile-btn {
+            background: var(--gradient-sky);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .edit-profile-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px var(--shadow-hover);
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: var(--background-light);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 20px var(--shadow);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px var(--shadow-hover);
+        }
+
+        .card-header {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--border);
+            background: var(--background);
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .card-content {
+            padding: 2rem;
+        }
+
+        /* Activity Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: var(--background);
+            border-radius: 15px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            background: var(--background-light);
+            border-color: var(--primary);
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .last-activity {
+            text-align: center;
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: var(--background);
+            border-radius: 15px;
+            border: 1px solid var(--border);
+        }
+
+        .activity-text {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .activity-time {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Security Settings */
+        .security-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .security-item:last-child {
+            border-bottom: none;
+        }
+
+        .security-info h4 {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .security-info p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .security-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: var(--gradient-sky);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px var(--shadow-hover);
+        }
+
+        .btn-warning {
+            background: var(--warning);
+            color: white;
+        }
+
+        .btn-warning:hover {
+            background: #d97706;
+            transform: translateY(-2px);
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #dc2626;
+            transform: translateY(-2px);
+        }
+
+        /* Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .modal.show {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background: var(--background-light);
+            border-radius: 20px;
+            max-width: 500px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-header {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            color: var(--danger);
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            background: var(--background-light);
+            color: var(--text-primary);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-cancel {
+            background: transparent;
+            color: var(--text-secondary);
+            border: 2px solid var(--border);
+        }
+
+        .btn-cancel:hover {
+            background: var(--background);
+            border-color: var(--text-secondary);
+        }
+
+        .btn-save {
+            background: var(--gradient-sky);
+            color: white;
+        }
+
+        .btn-save:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px var(--shadow-hover);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .profile-summary {
+                padding: 1.5rem;
+            }
+            
+            .profile-avatar {
+                width: 100px;
+                height: 100px;
+                font-size: 2.5rem;
+            }
+            
+            .profile-name {
+                font-size: 1.5rem;
+            }
+            
+            .profile-contacts {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .card-content {
+                padding: 1.5rem;
+            }
+            
+            .security-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .modal-content {
+                margin: 10px;
+            }
+            
+            .modal-body {
+                padding: 1.5rem;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .profile-avatar {
+                width: 80px;
+                height: 80px;
+                font-size: 2rem;
+            }
+            
+            .profile-name {
+                font-size: 1.3rem;
+            }
+            
+            .card-header {
+                padding: 1rem 1.5rem;
+            }
+            
+            .card-content {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Prof Academy</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="student-dashboard.html" class="nav-link">لوحة التحكم</a></li>
+                <li><a href="my-courses.html" class="nav-link">كورساتي</a></li>
+                <li><a href="student-profile.html" class="nav-link active">الملف الشخصي</a></li>
+                <li><a href="login.html" class="nav-link">تسجيل الخروج</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="page-title">الملف الشخصي</h1>
+                <p class="page-subtitle">إدارة بياناتك الشخصية وإعدادات الحساب</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="main-content">
+        <div class="container">
+            <!-- Profile Summary -->
+            <div class="profile-grid">
+                <div class="profile-summary">
+                    <div class="profile-content">
+                        <div class="profile-avatar">
+                            <i class="fas fa-user"></i>
+                            <div class="avatar-edit">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                        </div>
+                        <h2 class="profile-name">حسن علي محمد</h2>
+                        <p class="profile-grade">الصف الثاني الإعدادي</p>
+                        <div class="profile-contacts">
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i>
+                                <span>01012345678</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-user-friends"></i>
+                                <span>01087654321 (ولي الأمر)</span>
+                            </div>
+                        </div>
+                        <button class="edit-profile-btn" onclick="openEditModal()">
+                            <i class="fas fa-edit"></i>
+                            تعديل الملف الشخصي
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cards Grid -->
+            <div class="cards-grid">
+                <!-- Activity Summary -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-chart-line"></i>
+                            ملخص النشاط
+                        </h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <div class="stat-value">6</div>
+                                <div class="stat-label">الكورسات المشتراة</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">3</div>
+                                <div class="stat-label">الكورسات المكتملة</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">2</div>
+                                <div class="stat-label">الشهادات المحصلة</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">75%</div>
+                                <div class="stat-label">معدل الإنجاز</div>
+                            </div>
+                        </div>
+                        <div class="last-activity">
+                            <div class="activity-text">آخر نشاط في المنصة</div>
+                            <div class="activity-time">منذ يومين - مشاهدة درس البرمجة</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Security Settings -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-shield-alt"></i>
+                            إعدادات الأمان
+                        </h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="security-item">
+                            <div class="security-info">
+                                <h4>تغيير كلمة المرور</h4>
+                                <p>آخر تغيير منذ 3 أشهر</p>
+                            </div>
+                            <button class="security-btn btn-primary" onclick="openPasswordModal()">تغيير</button>
+                        </div>
+                        <div class="security-item">
+                            <div class="security-info">
+                                <h4>إدارة الأجهزة</h4>
+                                <p>3 أجهزة نشطة</p>
+                            </div>
+                            <button class="security-btn btn-primary">إدارة</button>
+                        </div>
+                        <div class="security-item">
+                            <div class="security-info">
+                                <h4>تعطيل الحساب مؤقتاً</h4>
+                                <p>إيقاف الحساب لفترة محددة</p>
+                            </div>
+                            <button class="security-btn btn-warning">تعطيل</button>
+                        </div>
+                        <div class="security-item">
+                            <div class="security-info">
+                                <h4>حذف الحساب نهائياً</h4>
+                                <p>حذف جميع البيانات نهائياً</p>
+                            </div>
+                            <button class="security-btn btn-danger">حذف</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Edit Profile Modal -->
+    <div class="modal" id="editModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">تعديل الملف الشخصي</h3>
+                <button class="close-btn" onclick="closeModal('editModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="editForm">
+                    <div class="form-group">
+                        <label>الاسم الكامل</label>
+                        <input type="text" value="حسن علي محمد" required>
+                    </div>
+                    <div class="form-group">
+                        <label>رقم الهاتف</label>
+                        <input type="tel" value="01012345678" required>
+                    </div>
+                    <div class="form-group">
+                        <label>رقم ولي الأمر</label>
+                        <input type="tel" value="01087654321" required>
+                    </div>
+                    <div class="form-group">
+                        <label>الصف الدراسي</label>
+                        <select required>
+                            <option value="">اختر الصف</option>
+                            <option value="grade7">الصف الأول الإعدادي</option>
+                            <option value="grade8" selected>الصف الثاني الإعدادي</option>
+                            <option value="grade9">الصف الثالث الإعدادي</option>
+                            <option value="grade10">الصف الأول الثانوي</option>
+                            <option value="grade11">الصف الثاني الثانوي</option>
+                            <option value="grade12">الصف الثالث الثانوي</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>البريد الإلكتروني (اختياري)</label>
+                        <input type="email" placeholder="example@email.com">
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-cancel" onclick="closeModal('editModal')">إلغاء</button>
+                        <button type="submit" class="btn btn-save">حفظ التغييرات</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Change Password Modal -->
+    <div class="modal" id="passwordModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">تغيير كلمة المرور</h3>
+                <button class="close-btn" onclick="closeModal('passwordModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="passwordForm">
+                    <div class="form-group">
+                        <label>كلمة المرور الحالية</label>
+                        <input type="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label>كلمة المرور الجديدة</label>
+                        <input type="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label>تأكيد كلمة المرور الجديدة</label>
+                        <input type="password" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-cancel" onclick="closeModal('passwordModal')">إلغاء</button>
+                        <button type="submit" class="btn btn-save">تغيير كلمة المرور</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Open edit modal
+        function openEditModal() {
+            document.getElementById('editModal').classList.add('show');
+        }
+
+        // Open password modal
+        function openPasswordModal() {
+            document.getElementById('passwordModal').classList.add('show');
+        }
+
+        // Close modal
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('show');
+        }
+
+        // Close modal when clicking outside
+        document.addEventListener('click', function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.classList.remove('show');
+            }
+        });
+
+        // Handle form submissions
+        document.getElementById('editForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show success message
+            alert('تم حفظ التغييرات بنجاح!');
+            closeModal('editModal');
+            
+            // Here you would normally send the data to the server
+        });
+
+        document.getElementById('passwordForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const newPassword = this.querySelector('input[type="password"]:nth-of-type(2)').value;
+            const confirmPassword = this.querySelector('input[type="password"]:nth-of-type(3)').value;
+            
+            if (newPassword !== confirmPassword) {
+                alert('كلمة المرور الجديدة وتأكيدها غير متطابقين');
+                return;
+            }
+            
+            // Show success message
+            alert('تم تغيير كلمة المرور بنجاح!');
+            closeModal('passwordModal');
+            
+            // Here you would normally send the data to the server
+        });
+
+        // Avatar upload simulation
+        document.querySelector('.avatar-edit').addEventListener('click', function() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            input.onchange = function(e) {
+                if (e.target.files[0]) {
+                    alert('تم رفع الصورة بنجاح!');
+                    // Here you would normally upload the image
+                }
+            };
+            input.click();
+        });
+    </script>
+</body>
+</html>

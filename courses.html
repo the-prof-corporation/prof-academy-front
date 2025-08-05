@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الكورسات - Prof Academy</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Prof Academy</span>
+            </div>
+            <div class="nav-search">
+                <div class="search-container">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="ابحث عن الكورسات..." class="search-input">
+                </div>
+            </div>
+            <div class="nav-user">
+                <a href="login.html" class="user-profile">
+                    <i class="fas fa-user-circle"></i>
+                </a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="courses-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">استكشف أفضل الكورسات لدينا</h1>
+                <p class="hero-subtitle">اكتشف مجموعة متنوعة من الكورسات عالية الجودة المصممة لمساعدتك في تحقيق أهدافك التعليمية</p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">150+</span>
+                        <span class="stat-label">كورس</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">مدرس</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">10K+</span>
+                        <span class="stat-label">طالب</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="courses-main">
+        <div class="container">
+            <div class="courses-layout">
+                <!-- Sidebar Filters -->
+                <aside class="courses-sidebar">
+                    <div class="sidebar-header">
+                        <h3>التصنيفات</h3>
+                        <button class="clear-filters">مسح الفلاتر</button>
+                    </div>
+                    
+                    <div class="filter-section">
+                        <h4>المجالات</h4>
+                        <div class="filter-options">
+                            <label class="filter-option">
+                                <input type="checkbox" name="category" value="programming">
+                                <span class="checkmark"></span>
+                                <span class="option-text">برمجة</span>
+                                <span class="option-count">(25)</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox" name="category" value="mathematics">
+                                <span class="checkmark"></span>
+                                <span class="option-text">رياضيات</span>
+                                <span class="option-count">(18)</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox" name="category" value="science">
+                                <span class="checkmark"></span>
+                                <span class="option-text">علوم</span>
+                                <span class="option-count">(22)</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox" name="category" value="management">
+                                <span class="checkmark"></span>
+                                <span class="option-text">إدارة</span>
+                                <span class="option-count">(15)</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox" name="category" value="languages">
+                                <span class="checkmark"></span>
+                                <span class="option-text">لغات</span>
+                                <span class="option-count">(20)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <h4>المستوى</h4>
+                        <div class="filter-options">
+                            <label class="filter-option">
+                                <input type="radio" name="level" value="beginner">
+                                <span class="checkmark radio"></span>
+                                <span class="option-text">مبتدئ</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="radio" name="level" value="intermediate">
+                                <span class="checkmark radio"></span>
+                                <span class="option-text">متوسط</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="radio" name="level" value="advanced">
+                                <span class="checkmark radio"></span>
+                                <span class="option-text">متقدم</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <h4>السعر</h4>
+                        <div class="filter-options">
+                            <label class="filter-option">
+                                <input type="checkbox" name="price" value="free">
+                                <span class="checkmark"></span>
+                                <span class="option-text">مجاني</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox" name="price" value="paid">
+                                <span class="checkmark"></span>
+                                <span class="option-text">مدفوع</span>
+                            </label>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Courses Grid -->
+                <section class="courses-content">
+                    <div class="courses-header">
+                        <div class="courses-info">
+                            <h2>جميع الكورسات</h2>
+                            <p>عرض <span class="courses-count">150</span> كورس</p>
+                        </div>
+                        <div class="courses-sort">
+                            <select class="sort-select">
+                                <option value="popular">الأكثر شعبية</option>
+                                <option value="newest">الأحدث</option>
+                                <option value="rating">الأعلى تقييماً</option>
+                                <option value="price-low">السعر: من الأقل</option>
+                                <option value="price-high">السعر: من الأعلى</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="courses-grid">
+                        <!-- Course Card 1 -->
+                        <div class="course-card">
+                            <div class="course-thumbnail">
+                                <img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=400&h=250&fit=crop" alt="مقدمة في البرمجة">
+                                <div class="course-overlay">
+                                    <span class="course-level">مبتدئ</span>
+                                    <span class="course-price">مجاني</span>
+                                </div>
+                            </div>
+                            <div class="course-content">
+                                <div class="course-category">برمجة</div>
+                                <h3 class="course-title">مقدمة في البرمجة بلغة Python</h3>
+                                <p class="course-description">تعلم أساسيات البرمجة من الصفر باستخدام لغة Python مع تطبيقات عملية ومشاريع حقيقية</p>
+                                <div class="course-meta">
+                                    <div class="course-rating">
+                                        <div class="stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                        </div>
+                                        <span class="rating-text">4.5 (1,250 تقييم)</span>
+                                    </div>
+                                    <div class="course-stats">
+                                        <span><i class="fas fa-clock"></i> 12 ساعة</span>
+                                        <span><i class="fas fa-users"></i> 2,450 طالب</span>
+                                    </div>
+                                </div>
+                                <div class="course-instructor">
+                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face" alt="أحمد محمد">
+                                    <span>أحمد محمد</span>
+                                </div>
+                                <button class="btn btn-primary btn-full">عرض الكورس</button>
+                            </div>
+                        </div>
+
+                        <!-- Course Card 2 -->
+                        <div class="course-card">
+                            <div class="course-thumbnail">
+                                <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400&h=250&fit=crop" alt="الرياضيات المتقدمة">
+                                <div class="course-overlay">
+                                    <span class="course-level">متقدم</span>
+                                    <span class="course-price">199 ريال</span>
+                                </div>
+                            </div>
+                            <div class="course-content">
+                                <div class="course-category">رياضيات</div>
+                                <h3 class="course-title">الرياضيات المتقدمة للثانوية العامة</h3>
+                                <p class="course-description">استعد لامتحانات الثانوية العامة مع شرح شامل لجميع فصول الرياضيات المتقدمة</p>
+                                <div class="course-meta">
+                                    <div class="course-rating">
+                                        <div class="stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <span class="rating-text">4.8 (890 تقييم)</span>
+                                    </div>
+                                    <div class="course-stats">
+                                        <span><i class="fas fa-clock"></i> 18 ساعة</span>
+                                        <span><i class="fas fa-users"></i> 1,680 طالب</span>
+                                    </div>
+                                </div>
+                                <div class="course-instructor">
+                                    <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=40&h=40&fit=crop&crop=face" alt="فاطمة علي">
+                                    <span>فاطمة علي</span>
+                                </div>
+                                <button class="btn btn-primary btn-full">عرض الكورس</button>
+                            </div>
+                        </div>
+
+                        <!-- Course Card 3 -->
+                        <div class="course-card">
+                            <div class="course-thumbnail">
+                                <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=400&h=250&fit=crop" alt="الفيزياء الحديثة">
+                                <div class="course-overlay">
+                                    <span class="course-level">متوسط</span>
+                                    <span class="course-price">149 ريال</span>
+                                </div>
+                            </div>
+                            <div class="course-content">
+                                <div class="course-category">علوم</div>
+                                <h3 class="course-title">الفيزياء الحديثة والتطبيقات العملية</h3>
+                                <p class="course-description">اكتشف عالم الفيزياء الحديثة من خلال التجارب العملية والتطبيقات في الحياة اليومية</p>
+                                <div class="course-meta">
+                                    <div class="course-rating">
+                                        <div class="stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
+                                        <span class="rating-text">4.2 (756 تقييم)</span>
+                                    </div>
+                                    <div class="course-stats">
+                                        <span><i class="fas fa-clock"></i> 15 ساعة</span>
+                                        <span><i class="fas fa-users"></i> 1,120 طالب</span>
+                                    </div>
+                                </div>
+                                <div class="course-instructor">
+                                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face" alt="عمر خالد">
+                                    <span>عمر خالد</span>
+                                </div>
+                                <button class="btn btn-primary btn-full">عرض الكورس</button>
+                            </div>
+                        </div>
+
+                        <!-- Course Card 4 -->
+                        <div class="course-card">
+                            <div class="course-thumbnail">
+                                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=250&fit=crop" alt="إدارة المشاريع">
+                                <div class="course-overlay">
+                                    <span class="course-level">متوسط</span>
+                                    <span class="course-price">299 ريال</span>
+                                </div>
+                            </div>
+                            <div class="course-content">
+                                <div class="course-category">إدارة</div>
+                                <h3 class="course-title">إدارة المشاريع الاحترافية</h3>
+                                <p class="course-description">تعلم مهارات إدارة المشاريع من التخطيط إلى التنفيذ والمراقبة باستخدام أفضل الممارسات</p>
+                                <div class="course-meta">
+                                    <div class="course-rating">
+                                        <div class="stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <span class="rating-text">4.7 (634 تقييم)</span>
+                                    </div>
+                                    <div class="course-stats">
+                                        <span><i class="fas fa-clock"></i> 20 ساعة</span>
+                                        <span><i class="fas fa-users"></i> 890 طالب</span>
+                                    </div>
+                                </div>
+                                <div class="course-instructor">
+                                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=40&h=40&fit=crop&crop=face" alt="سارة أحمد">
+                                    <span>سارة أحمد</span>
+                                </div>
+                                <button class="btn btn-primary btn-full">عرض الكورس</button>
+                            </div>
+                        </div>
+
+                        <!-- Course Card 5 -->
+                        <div class="course-card">
+                            <div class="course-thumbnail">
+                                <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=400&h=250&fit=crop" alt="اللغة الإنجليزية">
+                                <div class="course-overlay">
+                                    <span class="course-level">مبتدئ</span>
+                                    <span class="course-price">99 ريال</span>
+                                </div>
+                            </div>
+                            <div class="course-content">
+                                <div class="course-category">لغات</div>
+                                <h3 class="course-title">اللغة الإنجليزية للمحادثة اليومية</h3>
+                                <p class="course-description">تعلم الإنجليزية بطريقة تفاعلية مع التركيز على المحادثة والتواصل الفعال</p>
+                                <div class="course-meta">
+                                    <div class="course-rating">
+                                        <div class="stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                        </div>
+                                        <span class="rating-text">4.6 (1,045 تقييم)</span>
+                                    </div>
+                                    <div class="course-stats">
+                                        <span><i class="fas fa-clock"></i> 10 ساعة</span>
+                                        <span><i class="fas fa-users"></i> 2,100 طالب</span>
+                                    </div>
+                                </div>
+                                <div class="course-instructor">
+                                    <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=40&h=40&fit=crop&crop=face" alt="فاطمة علي">
+                                    <span>فاطمة علي</span>
+                                </div>
+                                <button class="btn btn-primary btn-full">عرض الكورس</button>
+                            </div>
+                        </div>
+
+                        <!-- Course Card 6 -->
+                        <div class="course-card">
+                            <div class="course-thumbnail">
+                                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=250&fit=crop" alt="تطوير الويب">
+                                <div class="course-overlay">
+                                    <span class="course-level">متقدم</span>
+                                    <span class="course-price">399 ريال</span>
+                                </div>
+                            </div>
+                            <div class="course-content">
+                                <div class="course-category">برمجة</div>
+                                <h3 class="course-title">تطوير تطبيقات الويب المتقدمة</h3>
+                                <p class="course-description">تعلم تطوير تطبيقات الويب الحديثة باستخدام React و Node.js مع قواعد البيانات</p>
+                                <div class="course-meta">
+                                    <div class="course-rating">
+                                        <div class="stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <span class="rating-text">4.9 (567 تقييم)</span>
+                                    </div>
+                                    <div class="course-stats">
+                                        <span><i class="fas fa-clock"></i> 25 ساعة</span>
+                                        <span><i class="fas fa-users"></i> 750 طالب</span>
+                                    </div>
+                                </div>
+                                <div class="course-instructor">
+                                    <img src="https://images.unsplash.com/photo-15070032

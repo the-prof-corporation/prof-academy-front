@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>طرق الدفع - Prof Academy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: #F0EDCF;
+            color: #2C3E50;
+            line-height: 1.6;
+            direction: rtl;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #F0EDCF 0%, #FFFFFF 100%);
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(11, 96, 176, 0.1);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #40A2D8 0%, #0B60B0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: #5A6C7D;
+            margin-bottom: 2rem;
+        }
+
+        .course-info {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid #E1E8ED;
+            display: inline-block;
+        }
+
+        .course-info h3 {
+            color: #0B60B0;
+            margin-bottom: 5px;
+        }
+
+        .amount {
+            color: #0B60B0;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .payment-method {
+            background: white;
+            border: 2px solid #E1E8ED;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .payment-method:hover {
+            border-color: #0B60B0;
+            box-shadow: 0 8px 30px rgba(11, 96, 176, 0.15);
+        }
+
+        .method-header {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: #f8f9fa;
+        }
+
+        .method-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .vodafone { background: #e60000; }
+        .instapay { background: #1e40af; }
+        .profcode { background: #7c3aed; }
+
+        .method-info h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .method-info p {
+            color: #5A6C7D;
+            font-size: 0.9rem;
+        }
+
+        .method-content {
+            padding: 20px;
+            display: none;
+            border-top: 1px solid #E1E8ED;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #2C3E50;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #E1E8ED;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #0B60B0;
+        }
+
+        .form-group input[readonly] {
+            background: #f8f9fa;
+            color: #6c757d;
+        }
+
+        .upload-area {
+            border: 2px dashed #E1E8ED;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+
+        .upload-area:hover {
+            border-color: #0B60B0;
+            background: white;
+        }
+
+        .upload-area i {
+            font-size: 2rem;
+            color: #0B60B0;
+            margin-bottom: 10px;
+        }
+
+        .upload-area.has-file {
+            border-color: #22c55e;
+            background: rgba(34, 197, 94, 0.1);
+        }
+
+        .upload-area.has-file i {
+            color: #22c55e;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #40A2D8 0%, #0B60B0 100%);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(11, 96, 176, 0.3);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .code-status {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .code-status.valid {
+            background: rgba(34, 197, 94, 0.1);
+            color: #22c55e;
+            border: 1px solid #22c55e;
+            display: block;
+        }
+
+        .code-status.invalid {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            border: 1px solid #ef4444;
+            display: block;
+        }
+
+        .success-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: #22c55e;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .modal-content h2 {
+            color: #2C3E50;
+            margin-bottom: 15px;
+        }
+
+        .modal-content p {
+            color: #5A6C7D;
+            margin-bottom: 25px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .method-header {
+                padding: 15px;
+            }
+            
+            .method-content {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>طرق الدفع المتاحة</h1>
+            <p>اختر الطريقة المناسبة للدفع لإتمام اشتراكك في الكورس</p>
+            <div class="course-info">
+                <h3>مقدمة في البرمجة بلغة Python</h3>
+                <p>المبلغ المطلوب: <span class="amount">299 ريال</span></p>
+            </div>
+        </div>
+
+        <!-- Vodafone Cash -->
+        <div class="payment-method">
+            <div class="method-header" onclick="toggleMethod('vodafone')">
+                <div class="method-icon vodafone">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <div class="method-info">
+                    <h3>Vodafone Cash</h3>
+                    <p>الدفع عبر فودافون كاش</p>
+                </div>
+            </div>
+            <div class="method-content" id="vodafone-content">
+                <form id="vodafone-form">
+                    <div class="form-group">
+                        <label>الرقم المحول منه</label>
+                        <input type="tel" name="phone_from" placeholder="01xxxxxxxxx" required>
+                    </div>
+                    <div class="form-group">
+                        <label>الرقم المحول إليه</label>
+                        <input type="tel" value="01012345678" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>المبلغ المحول</label>
+                        <input type="number" name="amount" placeholder="299" required>
+                    </div>
+                    <div class="form-group">
+                        <label>لقطة شاشة</label>
+                        <div class="upload-area" onclick="document.getElementById('vodafone-file').click()">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>اضغط لرفع الصورة</p>
+                            <input type="file" id="vodafone-file" style="display: none;" accept="image/*" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn">تأكيد الدفع</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- InstaPay -->
+        <div class="payment-method">
+            <div class="method-header" onclick="toggleMethod('instapay')">
+                <div class="method-icon instapay">
+                    <i class="fas fa-university"></i>
+                </div>
+                <div class="method-info">
+                    <h3>InstaPay</h3>
+                    <p>الدفع عبر إنستاباي</p>
+                </div>
+            </div>
+            <div class="method-content" id="instapay-content">
+                <form id="instapay-form">
+                    <div class="form-group">
+                        <label>الرقم المحول منه</label>
+                        <input type="tel" name="phone_from" placeholder="01xxxxxxxxx" required>
+                    </div>
+                    <div class="form-group">
+                        <label>الرقم المحول إليه</label>
+                        <input type="tel" value="01012345678" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>المبلغ المحول</label>
+                        <input type="number" name="amount" placeholder="299" required>
+                    </div>
+                    <div class="form-group">
+                        <label>لقطة شاشة</label>
+                        <div class="upload-area" onclick="document.getElementById('instapay-file').click()">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>اضغط لرفع الصورة</p>
+                            <input type="file" id="instapay-file" style="display: none;" accept="image/*" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn">تأكيد الدفع</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Prof Codes -->
+        <div class="payment-method">
+            <div class="method-header" onclick="toggleMethod('profcode')">
+                <div class="method-icon profcode">
+                    <i class="fas fa-ticket-alt"></i>
+                </div>
+                <div class="method-info">
+                    <h3>Prof Codes</h3>
+                    <p>كود الشراء من المعلم</p>
+                </div>
+            </div>
+            <div class="method-content" id="profcode-content">
+                <form id="profcode-form">
+                    <div class="form-group">
+                        <label>كود بروف</label>
+                        <input type="text" id="prof-code" name="code" placeholder="PROF-XXXX-XXXX-XXXX" required>
+                        <div class="code-status" id="code-status"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>قيمة الكود</label>
+                        <input type="number" name="code_value" placeholder="أدخل قيمة الكود" required>
+                    </div>
+                    <button type="submit" class="btn">تفعيل الكود</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="success-modal" id="success-modal">
+        <div class="modal-content">
+            <div class="success-icon">
+                <i class="fas fa-check"></i>
+            </div>
+            <h2>تم إرسال بيانات الدفع بنجاح</h2>
+            <p>سنقوم بمراجعتها خلال 24 ساعة وإعلامك على رقم الهاتف</p>
+            <button class="btn" onclick="closeModal()">حسناً</button>
+        </div>
+    </div>
+
+    <script>
+        // Toggle payment method
+        function toggleMethod(method) {
+            const content = document.getElementById(method + '-content');
+            const allContents = document.querySelectorAll('.method-content');
+            
+            // Close all other methods
+            allContents.forEach(c => {
+                if (c !== content) {
+                    c.style.display = 'none';
+                }
+            });
+            
+            // Toggle current method
+            if (content.style.display === 'block') {
+                content.style.display = 'none';
+            } else {
+                content.style.display = 'block';
+            }
+        }
+
+        // File upload handling
+        document.querySelectorAll('input[type="file"]').forEach(input => {
+            input.addEventListener('change', function() {
+                const uploadArea = this.parentElement;
+                if (this.files[0]) {
+                    uploadArea.classList.add('has-file');
+                    uploadArea.querySelector('i').className = 'fas fa-check-circle';
+                    uploadArea.querySelector('p').textContent = 'تم اختيار الملف: ' + this.files[0].name;
+                }
+            });
+        });
+
+        // Code validation
+        document.getElementById('prof-code').addEventListener('input', function() {
+            const code = this.value.trim();
+            const status = document.getElementById('code-status');
+            
+            if (code.length >= 8) {
+                const validCodes = ['PROF-2024-PYTHON-001', 'PROF-2024-MATH-002', 'PROF-2024-PHYS-003'];
+                
+                setTimeout(() => {
+                    if (validCodes.includes(code.toUpperCase())) {
+                        status.className = 'code-status valid';
+                        status.innerHTML = '<i class="fas fa-check-circle"></i> كود صالح - قيمة الكود: 299 ريال';
+                    } else {
+                        status.className = 'code-status invalid';
+                        status.innerHTML = '<i class="fas fa-times-circle"></i> كود غير صحيح';
+                    }
+                }, 1000);
+            } else {
+                status.style.display = 'none';
+            }
+        });
+
+        // Form submissions
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const btn = this.querySelector('button[type="submit"]');
+                const originalText = btn.textContent;
+                
+                btn.disabled = true;
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري المعالجة...';
+                
+                setTimeout(() => {
+                    btn.disabled = false;
+                    btn.textContent = originalText;
+                    
+                    // Show success modal
+                    document.getElementById('success-modal').style.display = 'flex';
+                    
+                    // Reset form
+                    this.reset();
+                    
+                    // Reset upload areas
+                    this.querySelectorAll('.upload-area').forEach(area => {
+                        area.classList.remove('has-file');
+                        area.querySelector('i').className = 'fas fa-cloud-upload-alt';
+                        area.querySelector('p').textContent = 'اضغط لرفع الصورة';
+                    });
+                    
+                    // Hide method content
+                    this.closest('.method-content').style.display = 'none';
+                    
+                }, 2000);
+            });
+        });
+
+        // Close modal
+        function closeModal() {
+            document.getElementById('success-modal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

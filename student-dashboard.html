@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم - Prof Academy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0B60B0;
+            --secondary: #40A2D8;
+            --accent: #F0EDCF;
+            --background: #F0EDCF;
+            --background-light: #FFFFFF;
+            --text-primary: #2C3E50;
+            --text-secondary: #5A6C7D;
+            --text-muted: #8B9DC3;
+            --border: #E1E8ED;
+            --shadow: rgba(11, 96, 176, 0.1);
+            --shadow-hover: rgba(11, 96, 176, 0.15);
+            --gradient-sky: linear-gradient(135deg, #40A2D8 0%, #0B60B0 100%);
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--background);
+            color: var(--text-primary);
+            line-height: 1.6;
+            direction: rtl;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: var(--background-light);
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 2px 20px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .header-text h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--gradient-sky);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .header-text p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            position: relative;
+        }
+
+        .user-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--gradient-sky);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .user-avatar:hover {
+            transform: scale(1.05);
+        }
+
+        .user-info h3 {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .user-info p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--background-light);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            box-shadow: 0 8px 30px var(--shadow);
+            min-width: 200px;
+            display: none;
+            z-index: 1000;
+        }
+
+        .dropdown.show {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        .dropdown a {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown a:hover {
+            background: var(--background);
+            color: var(--primary);
+        }
+
+        /* Stats Cards */
+        .stats-section {
+            padding: 2rem 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--background-light);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 20px var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px var(--shadow-hover);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: var(--gradient-sky);
+            border-radius: 50%;
+            transform: translate(30px, -30px);
+            opacity: 0.1;
+        }
+
+        .stat-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-sky);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        /* Dashboard Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Courses Section */
+        .section {
+            background: var(--background-light);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 20px var(--shadow);
+            overflow: hidden;
+        }
+
+        .section-header {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--border);
+            background: var(--background);
+        }
+
+        .section-header h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-content {
+            padding: 1.5rem 2rem;
+        }
+
+        .courses-grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .course-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--background);
+            border-radius: 15px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .course-item:hover {
+            background: var(--background-light);
+            border-color: var(--primary);
+            transform: translateX(-5px);
+        }
+
+        .course-thumbnail {
+            width: 80px;
+            height: 60px;
+            border-radius: 10px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .course-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .course-info {
+            flex: 1;
+        }
+
+        .course-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .course-progress {
+            margin-bottom: 0.75rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 0.25rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient-sky);
+            border-radius: 10px;
+            transition: width 0.8s ease;
+        }
+
+        .progress-text {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .course-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .badge-active {
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--success);
+        }
+
+        .badge-completed {
+            background: rgba(11, 96, 176, 0.1);
+            color: var(--primary);
+        }
+
+        .course-btn {
+            background: var(--gradient-sky);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .course-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px var(--shadow-hover);
+        }
+
+        /* Notifications */
+        .notification-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+            transition: background-color 0.3s ease;
+        }
+
+        .notification-item:hover {
+            background: var(--background);
+        }
+
+        .notification-item:last-child {
+            border-bottom: none;
+        }
+
+        .notification-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .notification-icon.info {
+            background: rgba(64, 162, 216, 0.1);
+            color: var(--secondary);
+        }
+
+        .notification-icon.warning {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning);
+        }
+
+        .notification-content {
+            flex: 1;
+        }
+
+        .notification-text {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.25rem;
+        }
+
+        .notification-time {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Bottom Grid */
+        .bottom-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Events */
+        .event-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--background);
+            border-radius: 15px;
+            border: 1px solid var(--border);
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .event-item:hover {
+            background: var(--background-light);
+            border-color: var(--primary);
+        }
+
+        .event-date {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-sky);
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .event-day {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .event-month {
+            font-size: 0.7rem;
+        }
+
+        .event-info h4 {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .event-time {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Certificates */
+        .certificate-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: var(--background);
+            border-radius: 15px;
+            border: 1px solid var(--border);
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .certificate-item:hover {
+            background: var(--background-light);
+            border-color: var(--primary);
+        }
+
+        .certificate-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .certificate-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-sky);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .download-btn {
+            background: var(--success);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+        }
+
+        /* Messages */
+        .message-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--background);
+            border-radius: 15px;
+            border: 1px solid var(--border);
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .message-item:hover {
+            background: var(--background-light);
+            border-color: var(--primary);
+        }
+
+        .message-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient-sky);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .message-content h4 {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+            font-size: 0.9rem;
+        }
+
+        .message-text {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .view-btn {
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .view-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Animations */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .bottom-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .header-text h1 {
+                font-size: 2rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .section-content {
+                padding: 1rem;
+            }
+            
+            .course-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .course-thumbnail {
+                width: 100%;
+                height: 120px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stat-card {
+                padding: 1.5rem;
+            }
+            
+            .stat-value {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="header-text">
+                    <h1>لوحة التحكم</h1>
+                    <p>مرحبًا بك، أحمد محمد! إليك نظرة عامة على مسيرتك التعليمية.</p>
+                </div>
+                <div class="user-profile" onclick="toggleDropdown()">
+                    <div class="user-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="user-info">
+                        <h3>أحمد محمد</h3>
+                        <p>طالب نشط</p>
+                    </div>
+                    <div class="dropdown" id="userDropdown">
+                        <a href="#"><i class="fas fa-user-cog"></i> حسابي</a>
+                        <a href="#"><i class="fas fa-cog"></i> الإعدادات</a>
+                        <a href="#"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-content">
+                        <div class="stat-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="stat-value">6</div>
+                        <div class="stat-label">إجمالي الكورسات</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-content">
+                        <div class="stat-icon">
+                            <i class="fas fa-hourglass-half"></i>
+                        </div>
+                        <div class="stat-value">4</div>
+                        <div class="stat-label">الكورسات النشطة</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-content">
+                        <div class="stat-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="stat-value">75%</div>
+                        <div class="stat-label">معدل التقدم العام</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-content">
+                        <div class="stat-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="stat-value">2</div>
+                        <div class="stat-label">آخر نشاط (يوم)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Grid -->
+    <section class="dashboard-grid">
+        <div class="container" style="max-width: none; padding: 0 20px;">
+            <!-- My Courses -->
+            <div class="section">
+                <div class="section-header">
+                    <h2><i class="fas fa-graduation-cap"></i> كورساتي الحالية</h2>
+                </div>
+                <div class="section-content">
+                    <div class="courses-grid">
+                        <div class="course-item">
+                            <div class="course-thumbnail">
+                                <img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=100&h=80&fit=crop" alt="Python">
+                            </div>
+                            <div class="course-info">
+                                <div class="course-badge badge-active">جاري التعلم</div>
+                                <div class="course-title">مقدمة في البرمجة بلغة Python</div>
+                                <div class="course-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 75%"></div>
+                                    </div>
+                                    <div class="progress-text">75% مكتمل</div>
+                                </div>
+                                <button class="course-btn">استكمل الكورس</button>
+                            </div>
+                        </div>
+                        
+                        <div class="course-item">
+                            <div class="course-thumbnail">
+                                <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=100&h=80&fit=crop" alt="Math">
+                            </div>
+                            <div class="course-info">
+                                <div class="course-badge badge-completed">مكتمل</div>
+                                <div class="course-title">الرياضيات المتقدمة</div>
+                                <div class="course-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 100%"></div>
+                                    </div>
+                                    <div class="progress-text">100% مكتمل</div>
+                                </div>
+                                <button class="course-btn">عرض الشهادة</button>
+                            </div>
+                        </div>
+                        
+                        <div class="course-item">
+                            <div class="course-thumbnail">
+                                <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=100&h=80&fit=crop" alt="Physics">
+                            </div>
+                            <div class="course-info">
+                                <div class="course-badge badge-active">جاري التعلم</div>
+                                <div class="course-title">مقدمة في الفيزياء</div>
+                                <div class="course-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 45%"></div>
+                                    </div>
+                                    <div class="progress-text">45% مكتمل</div>
+                                </div>
+                                <button class="course-btn">استكمل الكورس</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notifications -->
+            <div class="section">
+                <div class="section-header">
+                    <h2><i class="fas fa-bell"></i> الإشعارات</h2>
+                </div>
+                <div class="section-content">
+                    <div class="notification-item">
+                        <div class="notification-icon info">
+                            <i class="fas fa-plus-circle"></i>
+                        </div>
+                        <div class="notification-content">
+                            <div class="notification-text">تم إضافة درس جديد في كورس الكيمياء</div>
+                            <div class="notification-time">منذ ساعتين</div>
+                        </div>
+                    </div>
+                    <div class="notification-item">
+                        <div class="notification-icon warning">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="notification-content">
+                            <div class="notification-text">يرجى مراجعة الواجب قبل الخميس</div>
+                            <div class="notification-time">منذ يوم واحد</div>
+                        </div>
+                    </div>
+                    <div class="notification-item">
+                        <div class="notification-icon info">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <div class="notification-content">
+                            <div class="notification-text">تهانينا! حصلت على شهادة الرياضيات</div>
+                            <div class="notification-time">منذ 3 أيام</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom Grid -->
+    <section class="bottom-grid">
+        <div class="container" style="max-width: none; padding: 0 20px;">
+            <!-- Upcoming Events -->
+            <div class="section">
+                <div class="section-header">
+                    <h2><i class="fas fa-calendar-check"></i> المهام والدروس القادمة</h2>
+                </div>
+                <div class="section-content">
+                    <div class="event-item">
+                        <div class="event-date">
+                            <div class="event-day">15</div>
+                            <div class="event-month">ديسمبر</div>
+                        </div>
+                        <div class="event-info">
+                            <h4>درس مباشر: الجبر</h4>
+                            <div class="event-time">الخميس 6:00 مساءً</div>
+                        </div>
+                    </div>
+                    <div class="event-item">
+                        <div class="event-date">
+                            <div class="event-day">16</div>
+                            <div class="event-month">ديسمبر</div>
+                        </div>
+                        <div class="event-info">
+                            <h4>تسليم واجب العلوم</h4>
+                            <div class="event-time">خلال 24 ساعة</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certificates -->
+            <div class="section">
+                <div class="section-header">
+                    <h2><i class="fas fa-award"></i> الشهادات المكتسبة</h2>
+                </div>
+                <div class="section-content">
+                    <div class="certificate-item">
+                        <div class="certificate-info">
+                            <div class="certificate-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div>
+                                <h4>شهادة الرياضيات المتقدمة</h4>
+                                <p style="font-size: 0.8rem; color: var(--text-muted);">مكتملة في 10 ديسمبر 2024</p>
+                            </div>
+                        </div>
+                        <button class="download-btn">تحميل الشهادة</button>
+                    </div>
+                    <div class="certificate-item">
+                        <div class="certificate-info">
+                            <div class="certificate-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div>
+                                <h4>شهادة أساسيات الكيمياء</h4>
+                                <p style="font-size: 0.8rem; color: var(--text-muted);">مكتملة في 5 ديسمبر 2024</p>
+                            </div>
+                        </div>
+                        <button class="download-btn">تحميل الشهادة</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Messages -->
+            <div class="section">
+                <div class="section-header">
+                    <h2><i class="fas fa-comments"></i> رسائل من المعلمين</h2>
+                </div>
+                <div class="section-content">
+                    <div class="message-item">
+                        <div class="message-avatar">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="message-content">
+                            <h4>د. أحمد علي</h4>
+                            <div class="message-text">أحسنت في الاختبار الأخير! استمر في التقدم الممتاز.</div>
+                            <button class="view-btn">عرض المحادثة</button>
+                        </div>
+                    </div>
+                    <div class="message-item">
+                        <div class="message-avatar">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="message-content">
+                            <h4>أ. فاطمة محمد</h4>
+                            <div class="message-text">لا تنس مراجعة الفصل الثالث قبل الدرس القادم.</div>
+                            <button class="view-btn">عرض المحادثة</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Toggle dropdown
+        function toggleDropdown() {
+            const dropdown = document.getElementById('userDropdown');
+            dropdown.classList.toggle('show');
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const userProfile = document.querySelector('.user-profile');
+            const dropdown = document.getElementById('userDropdown');
+            
+            if (!userProfile.contains(event.target)) {
+                dropdown.classList.remove('show');
+            }
+        });
+
+        // Animate progress bars on load
+        window.addEventListener('load', function() {
+            const progressBars = document.querySelectorAll('.progress-fill');
+            progressBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 500);
+            });
+        });
+
+        // Animate stat cards
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'slideUp 0.6s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.stat-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

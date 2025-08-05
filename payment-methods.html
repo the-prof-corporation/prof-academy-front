@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>طرق الدفع المتاحة - Prof Academy</title>
+    <link rel="stylesheet" href="styles-payment.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Prof Academy</span>
+            </div>
+            <div class="nav-search">
+                <div class="search-container">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="ابحث عن الكورسات..." class="search-input">
+                </div>
+            </div>
+            <div class="nav-user">
+                <a href="login.html" class="user-profile">
+                    <i class="fas fa-user-circle"></i>
+                </a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <section class="breadcrumb">
+        <div class="container">
+            <nav class="breadcrumb-nav">
+                <a href="landing.html">الرئيسية</a>
+                <i class="fas fa-chevron-left"></i>
+                <a href="course-details.html">تفاصيل الكورس</a>
+                <i class="fas fa-chevron-left"></i>
+                <span>طرق الدفع</span>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="page-title">طرق الدفع المتاحة</h1>
+                <p class="page-subtitle">اختر الطريقة المناسبة للدفع لإتمام اشتراكك في الكورس</p>
+                <div class="course-info">
+                    <div class="course-details">
+                        <img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=60&h=60&fit=crop" alt="الكورس">
+                        <div class="course-text">
+                            <h3>مقدمة في البرمجة بلغة Python</h3>
+                            <p>المبلغ المطلوب: <span class="amount">299 ريال</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Methods -->
+    <section class="payment-methods">
+        <div class="container">
+            <div class="payment-grid">
+                <!-- Vodafone Cash -->
+                <div class="payment-card" id="vodafone-card">
+                    <div class="payment-header">
+                        <div class="payment-icon vodafone-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="payment-info">
+                            <h3>Vodafone Cash</h3>
+                            <p>الدفع عبر فودافون كاش</p>
+                        </div>
+                        <button class="select-method" data-method="vodafone">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="payment-content collapsed" style="display: none;">
+                        <div class="payment-instructions">
+                            <div class="instruction-item">
+                                <i class="fas fa-phone"></i>
+                                <span>ادفع من رقمك إلى: <strong>01012345678</strong></span>
+                            </div>
+                            <div class="instruction-item">
+                                <i class="fas fa-money-bill"></i>
+                                <span>أدخل المبلغ المطلوب: <strong>299 ريال</strong></span>
+                            </div>
+                        </div>
+                        
+                        <form class="payment-form" id="vodafone-form">
+                            <div class="form-group">
+                                <label for="vodafone-from">الرقم المحول منه</label>
+                                <div class="input-group">
+                                    <i class="fas fa-phone"></i>
+                                    <input type="tel" id="vodafone-from" name="phone_from" placeholder="01xxxxxxxxx" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="vodafone-to">الرقم المحول إليه</label>
+                                <div class="input-group">
+                                    <i class="fas fa-phone-alt"></i>
+                                    <input type="tel" id="vodafone-to" name="phone_to" value="01012345678" readonly>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="vodafone-amount">المبلغ المحول</label>
+                                <div class="input-group">
+                                    <i class="fas fa-money-bill"></i>
+                                    <input type="number" id="vodafone-amount" name="amount" placeholder="299" required>
+                                    <span class="currency">ريال</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="vodafone-receipt">لقطة شاشة</label>
+                                <div class="upload-area" id="vodafone-upload">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <p>اضغط لرفع الصورة أو اسحبها هنا</p>
+                                    <input type="file" id="vodafone-receipt" name="receipt" accept="image/*" hidden>
+                                    <small>PNG, JPG حتى 5MB</small>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-full">
+                                <i class="fas fa-check-circle"></i>
+                                تأكيد الدفع
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- InstaPay -->
+                <div class="payment-card" id="instapay-card">
+                    <div class="payment-header">
+                        <div class="payment-icon instapay-icon">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <div class="payment-info">
+                            <h3>InstaPay</h3>
+                            <p>الدفع عبر إنستاباي</p>
+                        </div>
+                        <button class="select-method" data-method="instapay">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="payment-content collapsed" style="display: none;">
+                        <div class="payment-instructions">
+                            <div class="instruction-item">
+                                <i class="fas fa-mobile-alt"></i>
+                                <span>أرسل المبلغ عبر إنستاباي إلى الرقم: <strong>01012345678</strong></span>
+                            </div>
+                            <div class="instruction-item">
+                                <i class="fas fa-user"></i>
+                                <span>أو اسم الحساب: <strong>Prof Academy</strong></span>
+                            </div>
+                            <div class="instruction-item">
+                                <i class="fas fa-money-bill"></i>
+                                <span>المبلغ المطلوب: <strong>299 ريال</strong></span>
+                            </div>
+                        </div>
+                        
+                        <form class="payment-form" id="instapay-form">
+                            <div class="form-group">
+                                <label for="instapay-from">الرقم المحول منه</label>
+                                <div class="input-group">
+                                    <i class="fas fa-phone"></i>
+                                    <input type="tel" id="instapay-from" name="phone_from" placeholder="01xxxxxxxxx" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="instapay-to">الرقم المحول إليه</label>
+                                <div class="input-group">
+                                    <i class="fas fa-phone-alt"></i>
+                                    <input type="tel" id="instapay-to" name="phone_to" value="01012345678" readonly>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="instapay-amount">المبلغ المحول</label>
+                                <div class="input-group">
+                                    <i class="fas fa-money-bill"></i>
+                                    <input type="number" id="instapay-amount" name="amount" placeholder="299" required>
+                                    <span class="currency">ريال</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="instapay-receipt">لقطة شاشة</label>
+                                <div class="upload-area" id="instapay-upload">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <p>اضغط لرفع الصورة أو اسحبها هنا</p>
+                                    <input type="file" id="instapay-receipt" name="receipt" accept="image/*" hidden>
+                                    <small>PNG, JPG حتى 5MB</small>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-full">
+                                <i class="fas fa-check-circle"></i>
+                                تأكيد الدفع
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Prof Codes -->
+                <div class="payment-card" id="profcode-card">
+                    <div class="payment-header">
+                        <div class="payment-icon profcode-icon">
+                            <i class="fas fa-ticket-alt"></i>
+                        </div>
+                        <div class="payment-info">
+                            <h3>Prof Codes</h3>
+                            <p>كود الشراء من المعلم</p>
+                        </div>
+                        <button class="select-method" data-method="profcode">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="payment-content collapsed" style="display: none;">
+                        <div class="payment-instructions">
+                            <div class="instruction-item">
+                                <i class="fas fa-info-circle"></i>
+                                <span>أدخل كود الشراء الذي حصلت عليه من المعلم</span>
+                            </div>
+                            <div class="instruction-item">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>سيتم التحقق من صحة الكود تلقائياً</span>
+                            </div>
+                        </div>
+                        
+                        <form class="payment-form" id="profcode-form">
+                            <div class="form-group">
+                                <label for="prof-code">كود بروف</label>
+                                <div class="input-group">
+                                    <i class="fas fa-key"></i>
+                                    <input type="text" id="prof-code" name="code" placeholder="PROF-XXXX-XXXX-XXXX" required>
+                                    <div class="validation-status" id="code-status">
+                                        <i class="fas fa-spinner fa-spin" style="display: none;"></i>
+                                    </div>
+                                </div>
+                                <div class="code-info" id="code-info" style="display: none;">
+                                    <div class="code-details">
+                                        <span class="code-amount">قيمة الكود: 299 ريال</span>
+                                        <span class="code-valid">✓ كود صالح</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="code-value">قيمة الكود</label>
+                                <div class="input-group">
+                                    <i class="fas fa-money-bill"></i>
+                                    <input type="number" id="code-value" name="code_value" placeholder="أدخل قيمة الكود" required>
+                                    <span class="currency">ريال</span>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-full" disabled>
+                                <i class="fas fa-magic"></i>
+                                تفعيل الكود
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Message -->
+    <div class="success-overlay" id="success-overlay" style="display: none;">
+        <div class="success-modal">
+            <div class="success-animation">
+                <div class="checkmark-circle">
+                    <i class="fas fa-check"></i>
+                </div>
+            </div>
+            <h2>تم إرسال بيانات الدفع بنجاح</h2>
+            <p>سنقوم بمراجعتها خلال 24 ساعة وإعلامك على رقم الهاتف</p>
+            <div class="success-actions">
+                <button class="btn btn-primary" onclick="closeSuccessModal()">حسناً</button>
+                <a href="courses-new.html" class="btn btn-secondary">العودة للكورسات</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="payment-script.js"></script>
+</body>
+</html>

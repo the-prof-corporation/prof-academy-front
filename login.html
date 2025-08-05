@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تسجيل دخول طالب - Prof Academy</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          fontFamily: {
+            cairo: ["Cairo", "sans-serif"]
+          },
+          colors: {
+            primary: {
+              50: "#eff6ff",
+              100: "#dbeafe",
+              200: "#bfdbfe",
+              300: "#93c5fd",
+              400: "#60a5fa",
+              500: "#3b82f6",
+              600: "#2563eb",
+              700: "#1d4ed8",
+              800: "#1e40af",
+              900: "#1e3a8a"
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Cairo Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- FontAwesome -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+    }
+  </style>
+    <style>
+    .toast {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: #e74c3c; 
+        color: white;
+        padding: 12px 18px;
+        border-radius: 8px;
+        font-family: 'Cairo', sans-serif;
+        font-weight: 500;
+        z-index: 9999;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        transition: opacity 0.5s ease-in-out;
+    }
+
+    .toast.show {
+        opacity: 1;
+    }
+
+    .toast.hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    </style>
+</head>
+<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex items-center justify-center min-h-screen px-4">
+
+  <div class="w-full max-w-md bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6">
+    <div class="text-center mb-6">
+      <div class="flex items-center justify-center gap-2 text-xl font-bold text-primary-600 dark:text-primary-400">
+        <i class="fas fa-graduation-cap"></i>
+        <span>Prof Academy</span>
+      </div>
+      <h2 class="text-2xl font-semibold mt-4">تسجيل دخول طالب</h2>
+      <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">أدخل بياناتك لتسجيل دخول جديد</p>
+    </div>
+
+    <form method="post" class="space-y-4" id="loginForm">
+      <!-- رقم الطالب -->
+      <div>
+        <label for="studentPhone" class="block text-sm font-medium mb-1">رقم الطالب</label>
+        <div class="flex items-center border border-primary-300 dark:border-primary-700 rounded-lg px-3 py-2 bg-gray-50 dark:bg-gray-700">
+          <i class="fas fa-phone text-primary-500 mr-2"></i>
+          <input type="tel" id="studentPhone" name="studentPhone" required placeholder="05xxxxxxxx"
+                 class="w-full bg-transparent focus:outline-none text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500" />
+        </div>
+      </div>
+
+      <!-- كلمة المرور -->
+      <div>
+        <label for="password" class="block text-sm font-medium mb-1">كلمة المرور</label>
+        <div class="flex items-center border border-primary-300 dark:border-primary-700 rounded-lg px-3 py-2 bg-gray-50 dark:bg-gray-700">
+          <i class="fas fa-lock text-primary-500 mr-2"></i>
+          <input type="password" id="password" name="password" required placeholder="أدخل كلمة المرور"
+                 class="w-full bg-transparent focus:outline-none text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500" />
+        </div>
+      </div>
+
+      <!-- زر التسجيل -->
+      <button type="submit"
+              class="w-full bg-primary-600 hover:bg-primary-700 text-white py-2 px-4 rounded-lg text-sm font-semibold transition">
+        تسجيل دخول
+      </button>
+    </form>
+
+    <!-- الفوتر -->
+    <div class="text-center mt-6 text-sm">
+      <p> ليس لديك حساب بالفعل؟ <a href="register.html" class="text-primary-600 dark:text-primary-400 hover:underline">تسجيل الدخول</a></p>
+      <a href="index.html" class="inline-flex items-center gap-1 text-gray-500 dark:text-gray-300 mt-2 hover:underline">
+        <i class="fas fa-arrow-right"></i>
+        العودة للرئيسية
+      </a>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+  
+  const loginForm = document.getElementById("loginForm");
+  
+    loginForm.addEventListener("submit", function (e) {
+      e.preventDefault(); // 🛑 نوقف الريلود
+  
+      // ✅ نجمع البيانات من الفورم
+      const phone = document.getElementById("studentPhone").value;
+      const password = document.getElementById("password").value;
+  
+      axios.post("http://localhost:5000/api/student/login", {
+        phone,
+        password,
+      })
+      .then(res => {
+        if (res.data.success) {
+          showToast(res.data.msg); // ✅ رسالة ترحيب
+          // ✅ بعد 3 ثواني نوديه على الصفحة الرئيسية
+          setTimeout(() => {
+            window.location.href = "index.html";
+          }, 3000);
+        } else {
+          showToast(res.data.errMsg || "فشل تسجيل الدخول ❌");
+        }
+      })
+      .catch(err => {
+        const errorMsg =
+          err?.response?.data?.errMsg || "فشل الاتصال بالسيرفر ❌";
+          showToast(errorMsg);
+      });
+    });
+  
+    // ✅ توست شكلها حلو
+    function showToast(message) {
+      let toast = document.getElementById("toast");
+      if (!toast) {
+        toast = document.createElement("div");
+        toast.id = "toast";
+        toast.style.position = "fixed";
+        toast.style.top = "20px";
+        toast.style.right = "20px";
+        toast.style.background = "#0B60B0";
+        toast.style.color = "#fff";
+        toast.style.padding = "10px 20px";
+        toast.style.borderRadius = "8px";
+        toast.style.boxShadow = "0 0 10px rgba(0,0,0,0.2)";
+        toast.style.zIndex = 9999;
+        toast.style.transition = "all 0.5s ease-in-out";
+        document.body.appendChild(toast);
+      }
+  
+      toast.textContent = message;
+      toast.style.opacity = 1;
+      toast.style.transform = "translateY(0)";
+  
+      setTimeout(() => {
+        toast.style.opacity = 0;
+        toast.style.transform = "translateY(20px)";
+      }, 3000);
+    }
+  </script>
+  
+</body>
+</html>
