@@ -1,426 +1,167 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مقدمة في البرمجة بلغة Python - Prof Academy</title>
-    <link rel="stylesheet" href="css/styles-course-details.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>مقدمة في البرمجة بلغة Python - Prof Academy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+    }
+    .collapsed {
+      display: none;
+    }
+  </style>
 </head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <i class="fas fa-graduation-cap"></i>
-                <span>Prof Academy</span>
-            </div>
-            <div class="nav-search">
-                <div class="search-container">
-                    <i class="fas fa-search"></i>
-                    <input type="text" placeholder="ابحث عن الكورسات..." class="search-input">
-                </div>
-            </div>
-            <div class="nav-user">
-                <a href="login.html" class="user-profile">
-                    <i class="fas fa-user-circle"></i>
-                </a>
-            </div>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+<body class="bg-gray-900 text-white">
+  <!-- Navigation -->
+  <nav class="bg-gray-800 p-4 shadow-md">
+    <div class="container mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <i class="fas fa-graduation-cap text-blue-400"></i>
+        <span class="text-lg font-semibold">Prof Academy</span>
+      </div>
+      <div class="hidden md:block w-1/3">
+        <div class="relative">
+          <input type="text" placeholder="ابحث عن الكورسات..." class="w-full px-4 py-2 rounded-full bg-gray-700 text-white placeholder-gray-400 focus:outline-none">
+          <i class="fas fa-search absolute left-4 top-2.5 text-gray-400"></i>
         </div>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="login.html"><i class="fas fa-user-circle text-xl"></i></a>
+        <button class="md:hidden">
+          <i class="fas fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Breadcrumb -->
+  <div class="container mx-auto py-4 text-sm text-gray-400">
+    <nav class="flex gap-2 items-center">
+      <a href="landing.html" class="hover:underline">الرئيسية</a>
+      <i class="fas fa-chevron-left text-xs"></i>
+      <a href="courses-new.html" class="hover:underline">الكورسات</a>
+      <i class="fas fa-chevron-left text-xs"></i>
+      <span>مقدمة في البرمجة بلغة Python</span>
     </nav>
+  </div>
 
-    <!-- Breadcrumb -->
-    <section class="breadcrumb">
-        <div class="container">
-            <nav class="breadcrumb-nav">
-                <a href="landing.html">الرئيسية</a>
-                <i class="fas fa-chevron-left"></i>
-                <a href="courses-new.html">الكورسات</a>
-                <i class="fas fa-chevron-left"></i>
-                <span>مقدمة في البرمجة بلغة Python</span>
-            </nav>
-        </div>
-    </section>
+  <!-- Course Hero -->
+  <section class="container mx-auto grid md:grid-cols-3 gap-6 p-4">
+    <div class="md:col-span-2 space-y-4">
+      <div>
+        <span class="inline-block bg-blue-600 text-white px-3 py-1 rounded-full text-sm">برمجة</span>
+        <h1 class="text-2xl font-bold mt-2">مقدمة في البرمجة بلغة Python</h1>
+        <p class="text-gray-300 mt-2">تعلم أساسيات البرمجة من الصفر باستخدام لغة Python مع تطبيقات عملية ومشاريع حقيقية تؤهلك لدخول عالم البرمجة</p>
+      </div>
 
-    <!-- Course Hero -->
-    <section class="course-hero">
-        <div class="container">
-            <div class="course-hero-content">
-                <div class="course-info">
-                    <div class="course-category">برمجة</div>
-                    <h1 class="course-title">مقدمة في البرمجة بلغة Python</h1>
-                    <p class="course-subtitle">تعلم أساسيات البرمجة من الصفر باستخدام لغة Python مع تطبيقات عملية ومشاريع حقيقية تؤهلك لدخول عالم البرمجة</p>
-                    
-                    <div class="course-meta">
-                        <div class="course-rating">
-                            <div class="stars">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                            </div>
-                            <span class="rating-text">4.5 (1,250 تقييم)</span>
-                        </div>
-                        
-                        <div class="course-stats">
-                            <div class="stat-item">
-                                <i class="fas fa-clock"></i>
-                                <span>12 ساعة</span>
-                            </div>
-                            <div class="stat-item">
-                                <i class="fas fa-users"></i>
-                                <span>2,450 طالب</span>
-                            </div>
-                            <div class="stat-item">
-                                <i class="fas fa-signal"></i>
-                                <span>مبتدئ</span>
-                            </div>
-                            <div class="stat-item">
-                                <i class="fas fa-globe"></i>
-                                <span>العربية</span>
-                            </div>
-                        </div>
-                    </div>
+      <div class="flex flex-wrap gap-4 text-sm text-gray-300">
+        <div class="flex items-center gap-1"><i class="fas fa-star text-yellow-400"></i> 4.5 (1,250 تقييم)</div>
+        <div class="flex items-center gap-1"><i class="fas fa-clock"></i> 12 ساعة</div>
+        <div class="flex items-center gap-1"><i class="fas fa-users"></i> 2,450 طالب</div>
+        <div class="flex items-center gap-1"><i class="fas fa-signal"></i> مبتدئ</div>
+        <div class="flex items-center gap-1"><i class="fas fa-globe"></i> العربية</div>
+      </div>
 
-                    <div class="course-instructor">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop&crop=face" alt="أحمد محمد">
-                        <div class="instructor-info">
-                            <h3>أحمد محمد</h3>
-                            <p>مطور برمجيات خبير • 8 سنوات خبرة</p>
-                        </div>
-                    </div>
-                </div>
+      <div>
+        <h2 class="text-xl font-semibold border-b border-gray-700 pb-2 mb-4">وصف الكورس</h2>
+        <p class="mb-2">هذا الكورس مصمم خصيصاً للمبتدئين الذين يريدون تعلم البرمجة من الصفر. ستتعلم أساسيات لغة Python وهي واحدة من أسهل وأقوى لغات البرمجة في العالم.</p>
+        <ul class="list-disc pr-5 text-gray-300 space-y-1">
+          <li>أساسيات البرمجة والمفاهيم الأساسية</li>
+          <li>كتابة أول برنامج لك بلغة Python</li>
+          <li>التعامل مع المتغيرات وأنواع البيانات</li>
+          <li>الشروط والحلقات التكرارية</li>
+          <li>الدوال والوحدات</li>
+          <li>التعامل مع الملفات</li>
+          <li>مشاريع عملية تطبق ما تعلمته</li>
+        </ul>
+      </div>
 
-                <div class="course-preview">
-                    <div class="video-container">
-                        <img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=600&h=400&fit=crop" alt="معاينة الكورس">
-                        <div class="play-button">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                    
-                    <div class="course-pricing">
-                        <div class="price-info">
-                            <span class="current-price">مجاني</span>
-                            <span class="original-price">299 ريال</span>
-                            <span class="discount">خصم 100%</span>
-                        </div>
-                        
-                        <div class="course-actions">
-                            <a href="payment-methods.html" class="btn btn-primary btn-full">التسجيل في الكورس</a>
-                            <button class="btn btn-secondary btn-full">
-                                <i class="fas fa-heart"></i>
-                                إضافة للمفضلة
-                            </button>
-                        </div>
-                        
-                        <div class="course-includes">
-                            <h4>ما ستحصل عليه:</h4>
-                            <ul>
-                                <li><i class="fas fa-check"></i> 12 ساعة من المحتوى المرئي</li>
-                                <li><i class="fas fa-check"></i> 25 درس تفاعلي</li>
-                                <li><i class="fas fa-check"></i> 10 مشاريع عملية</li>
-                                <li><i class="fas fa-check"></i> شهادة إتمام معتمدة</li>
-                                <li><i class="fas fa-check"></i> وصول مدى الحياة</li>
-                                <li><i class="fas fa-check"></i> دعم فني مباشر</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+      <div>
+        <h2 class="text-xl font-bold mt-6 mb-4 border-b border-gray-700 pb-2">محتوى الكورس</h2>
+        <div class="space-y-4">
+          <!-- Section -->
+          <div class="border border-gray-700 rounded-md">
+            <button class="w-full flex justify-between items-center bg-gray-800 px-4 py-3 text-left text-white font-semibold toggle-section">
+              <span>الفصل الأول: مقدمة في البرمجة</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="section-content hidden bg-gray-900 px-4 py-3 text-sm text-gray-300 space-y-2">
+              <div class="flex justify-between items-center">
+                <span><i class="fas fa-play-circle text-blue-400"></i> ما هي البرمجة؟</span>
+                <span>15 دقيقة</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span><i class="fas fa-play-circle text-blue-400"></i> تثبيت Python وإعداد البيئة</span>
+                <span>20 دقيقة</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span><i class="fas fa-lock text-red-400"></i> كتابة أول برنامج</span>
+                <span>25 دقيقة</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span><i class="fas fa-lock text-red-400"></i> تمرين عملي: Hello World</span>
+                <span>30 دقيقة</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span><i class="fas fa-lock text-red-400"></i> اختبار الفصل الأول</span>
+                <span>10 أسئلة</span>
+              </div>
             </div>
+          </div>
+
+          <!-- Add more sections here if needed -->
+
         </div>
-    </section>
+      </div>
+    </div>
 
-    <!-- Course Content -->
-    <section class="course-content">
-        <div class="container">
-            <div class="content-layout">
-                <!-- Main Content -->
-                <div class="main-content">
-                    <!-- Course Description -->
-                    <div class="content-section">
-                        <h2>وصف الكورس</h2>
-                        <div class="description-content">
-                            <p>هذا الكورس مصمم خصيصاً للمبتدئين الذين يريدون تعلم البرمجة من الصفر. ستتعلم أساسيات لغة Python وهي واحدة من أسهل وأقوى لغات البرمجة في العالم.</p>
-                            
-                            <p>خلال هذا الكورس ستتعلم:</p>
-                            <ul>
-                                <li>أساسيات البرمجة والمفاهيم الأساسية</li>
-                                <li>كتابة أول برنامج لك بلغة Python</li>
-                                <li>التعامل مع المتغيرات وأنواع البيانات</li>
-                                <li>الشروط والحلقات التكرارية</li>
-                                <li>الدوال والوحدات</li>
-                                <li>التعامل مع الملفات</li>
-                                <li>مشاريع عملية تطبق ما تعلمته</li>
-                            </ul>
-                            
-                            <p>بنهاية هذا الكورس ستكون قادراً على كتابة برامج بسيطة وحل المشاكل البرمجية الأساسية، وستكون مستعداً للانتقال إلى مستويات أكثر تقدماً في البرمجة.</p>
-                        </div>
-                    </div>
-
-                    <!-- Course Curriculum -->
-                    <div class="content-section">
-                        <h2>محتوى الكورس</h2>
-                        <div class="curriculum">
-                            <div class="curriculum-stats">
-                                <span>5 فصول</span>
-                                <span>25 درس</span>
-                                <span>12 ساعة إجمالي</span>
-                            </div>
-                            
-                            <div class="curriculum-sections">
-                                <div class="curriculum-section">
-                                    <div class="section-header">
-                                        <div class="section-info">
-                                            <h3>الفصل الأول: مقدمة في البرمجة</h3>
-                                            <span class="section-duration">5 دروس • 2.5 ساعة</span>
-                                        </div>
-                                        <button class="section-toggle">
-                                            <i class="fas fa-chevron-down"></i>
-                                        </button>
-                                    </div>
-                                    <div class="section-content">
-                                        <div class="lesson-item">
-                                            <div class="lesson-info">
-                                                <i class="fas fa-play-circle"></i>
-                                                <span class="lesson-title">ما هي البرمجة؟</span>
-                                            </div>
-                                            <div class="lesson-meta">
-                                                <span class="lesson-duration">15 دقيقة</span>
-                                                <span class="lesson-type">مجاني</span>
-                                            </div>
-                                        </div>
-                                        <div class="lesson-item">
-                                            <div class="lesson-info">
-                                                <i class="fas fa-play-circle"></i>
-                                                <span class="lesson-title">تثبيت Python وإعداد البيئة</span>
-                                            </div>
-                                            <div class="lesson-meta">
-                                                <span class="lesson-duration">20 دقيقة</span>
-                                                <span class="lesson-type">مجاني</span>
-                                            </div>
-                                        </div>
-                                        <div class="lesson-item">
-                                            <div class="lesson-info">
-                                                <i class="fas fa-play-circle"></i>
-                                                <span class="lesson-title">كتابة أول برنامج</span>
-                                            </div>
-                                            <div class="lesson-meta">
-                                                <span class="lesson-duration">25 دقيقة</span>
-                                                <i class="fas fa-lock"></i>
-                                            </div>
-                                        </div>
-                                        <div class="lesson-item">
-                                            <div class="lesson-info">
-                                                <i class="fas fa-file-alt"></i>
-                                                <span class="lesson-title">تمرين عملي: Hello World</span>
-                                            </div>
-                                            <div class="lesson-meta">
-                                                <span class="lesson-duration">30 دقيقة</span>
-                                                <i class="fas fa-lock"></i>
-                                            </div>
-                                        </div>
-                                        <div class="lesson-item">
-                                            <div class="lesson-info">
-                                                <i class="fas fa-question-circle"></i>
-                                                <span class="lesson-title">اختبار الفصل الأول</span>
-                                            </div>
-                                            <div class="lesson-meta">
-                                                <span class="lesson-duration">10 أسئلة</span>
-                                                <i class="fas fa-lock"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="curriculum-section">
-                                    <div class="section-header">
-                                        <div class="section-info">
-                                            <h3>الفصل الثاني: المتغيرات وأنواع البيانات</h3>
-                                            <span class="section-duration">6 دروس • 3 ساعات</span>
-                                        </div>
-                                        <button class="section-toggle">
-                                            <i class="fas fa-chevron-down"></i>
-                                        </button>
-                                    </div>
-                                    <div class="section-content collapsed">
-                                        <div class="lesson-item">
-                                            <div class="lesson-info">
-                                                <i class="fas fa-play-circle"></i>
-                                                <span class="lesson-title">ما هي المتغيرات؟</span>
-                                            </div>
-                                            <div class="lesson-meta">
-                                                <span class="lesson-duration">20 دقيقة</span>
-                                                <i class="fas fa-lock"></i>
-                                            </div>
-                                        </div>
-                                        <div class="lesson-item">
-                                            <div class="lesson-info">
-                                                <i class="fas fa-play-circle"></i>
-                                                <span class="lesson-title">أنواع البيانات الأساسية</span>
-                                            </div>
-                                            <div class="lesson-meta">
-                                                <span class="lesson-duration">25 دقيقة</span>
-                                                <i class="fas fa-lock"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="curriculum-section">
-                                    <div class="section-header">
-                                        <div class="section-info">
-                                            <h3>الفصل الثالث: العمليات والشروط</h3>
-                                            <span class="section-duration">5 دروس • 2.5 ساعة</span>
-                                        </div>
-                                        <button class="section-toggle">
-                                            <i class="fas fa-chevron-down"></i>
-                                        </button>
-                                    </div>
-                                </div>
-
-                                <div class="curriculum-section">
-                                    <div class="section-header">
-                                        <div class="section-info">
-                                            <h3>الفصل الرابع: الحلقات التكرارية</h3>
-                                            <span class="section-duration">4 دروس • 2 ساعة</span>
-                                        </div>
-                                        <button class="section-toggle">
-                                            <i class="fas fa-chevron-down"></i>
-                                        </button>
-                                    </div>
-                                </div>
-
-                                <div class="curriculum-section">
-                                    <div class="section-header">
-                                        <div class="section-info">
-                                            <h3>الفصل الخامس: المشاريع العملية</h3>
-                                            <span class="section-duration">5 دروس • 2 ساعة</span>
-                                        </div>
-                                        <button class="section-toggle">
-                                            <i class="fas fa-chevron-down"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Sidebar -->
-                <div class="sidebar">
-                    <!-- Instructor Card -->
-                    <div class="instructor-card">
-                        <h3>المدرس</h3>
-                        <div class="instructor-profile">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" alt="أحمد محمد">
-                            <div class="instructor-details">
-                                <h4>أحمد محمد</h4>
-                                <p>مطور برمجيات خبير</p>
-                                <div class="instructor-stats">
-                                    <div class="stat">
-                                        <i class="fas fa-star"></i>
-                                        <span>4.8 تقييم</span>
-                                    </div>
-                                    <div class="stat">
-                                        <i class="fas fa-users"></i>
-                                        <span>15,420 طالب</span>
-                                    </div>
-                                    <div class="stat">
-                                        <i class="fas fa-play-circle"></i>
-                                        <span>25 كورس</span>
-                                    </div>
-                                </div>
-                                <p class="instructor-bio">مطور برمجيات مع أكثر من 8 سنوات من الخبرة في تطوير التطبيقات والمواقع. متخصص في Python وتطوير الويب.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Related Courses -->
-                    <div class="related-courses">
-                        <h3>كورسات ذات صلة</h3>
-                        <div class="related-course-item">
-                            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=80&h=60&fit=crop" alt="تطوير الويب">
-                            <div class="course-info">
-                                <h4>تطوير الويب بـ Python</h4>
-                                <div class="course-rating">
-                                    <div class="stars">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </div>
-                                    <span>4.9</span>
-                                </div>
-                                <span class="course-price">399 ريال</span>
-                            </div>
-                        </div>
-                        
-                        <div class="related-course-item">
-                            <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=80&h=60&fit=crop" alt="علم البيانات">
-                            <div class="course-info">
-                                <h4>علم البيانات بـ Python</h4>
-                                <div class="course-rating">
-                                    <div class="stars">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star-half-alt"></i>
-                                    </div>
-                                    <span>4.7</span>
-                                </div>
-                                <span class="course-price">599 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- Sidebar -->
+    <div class="bg-gray-800 p-4 rounded-xl space-y-4">
+      <div class="relative">
+        <img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=600&h=400&fit=crop" class="rounded-lg">
+        <div class="absolute inset-0 flex items-center justify-center">
+          <i class="fas fa-play text-white text-3xl bg-black/50 rounded-full p-2"></i>
         </div>
-    </section>
+      </div>
+      <div class="text-center">
+        <div class="text-2xl font-bold text-green-400">مجاني</div>
+        <div class="text-sm line-through text-gray-400">299 ريال</div>
+        <div class="text-sm text-red-400">خصم 100%</div>
+      </div>
+      <a href="payment-methods.html" class="block text-center bg-blue-600 text-white py-2 rounded-full font-semibold">التسجيل في الكورس</a>
+      <button class="w-full flex items-center justify-center gap-2 border border-gray-500 py-2 rounded-full text-white hover:bg-gray-700">
+        <i class="fas fa-heart"></i> إضافة للمفضلة
+      </button>
+      <div>
+        <h4 class="font-semibold mb-2">ما ستحصل عليه:</h4>
+        <ul class="text-sm text-gray-300 space-y-1">
+          <li><i class="fas fa-check text-green-400"></i> 12 ساعة من المحتوى المرئي</li>
+          <li><i class="fas fa-check text-green-400"></i> 25 درس تفاعلي</li>
+          <li><i class="fas fa-check text-green-400"></i> 10 مشاريع عملية</li>
+          <li><i class="fas fa-check text-green-400"></i> شهادة إتمام معتمدة</li>
+          <li><i class="fas fa-check text-green-400"></i> وصول مدى الحياة</li>
+          <li><i class="fas fa-check text-green-400"></i> دعم فني مباشر</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-    <script>
-        // Curriculum section toggle functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const sectionHeaders = document.querySelectorAll('.section-header');
-
-            sectionHeaders.forEach(header => {
-                header.addEventListener('click', function() {
-                    const section = this.parentElement;
-                    const content = section.querySelector('.section-content');
-                    const toggle = section.querySelector('.section-toggle i');
-
-                    // Toggle the collapsed class
-                    content.classList.toggle('collapsed');
-                    section.classList.toggle('active');
-
-                    // Rotate the chevron icon
-                    if (content.classList.contains('collapsed')) {
-                        toggle.style.transform = 'rotate(0deg)';
-                    } else {
-                        toggle.style.transform = 'rotate(180deg)';
-                    }
-                });
-            });
-
-            // Mobile menu toggle
-            const hamburger = document.querySelector('.hamburger');
-            const navMenu = document.querySelector('.nav-menu');
-
-            if (hamburger && navMenu) {
-                hamburger.addEventListener('click', function() {
-                    navMenu.classList.toggle('active');
-                });
-            }
-        });
-    </script>
+  <script>
+    // Toggle section content
+    document.querySelectorAll('.toggle-section').forEach(button => {
+      button.addEventListener('click', () => {
+        const content = button.nextElementSibling;
+        content.classList.toggle('hidden');
+        const icon = button.querySelector('i');
+        icon.classList.toggle('fa-chevron-down');
+        icon.classList.toggle('fa-chevron-up');
+      });
+    });
+  </script>
 </body>
 </html>
